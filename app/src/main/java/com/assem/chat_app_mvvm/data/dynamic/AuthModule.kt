@@ -1,4 +1,4 @@
-package com.assem.chat_app_mvvm.data.repository
+package com.assem.chat_app_mvvm.data.dynamic
 
 import com.assem.chat_app_mvvm.data.models.User
 import com.google.firebase.auth.FirebaseUser
@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseUser
  * mo7mad.assim@gmail.com
  */
 
-interface AuthRepository {
+interface AuthModule {
 
     fun login(email: String, password: String): Boolean
 

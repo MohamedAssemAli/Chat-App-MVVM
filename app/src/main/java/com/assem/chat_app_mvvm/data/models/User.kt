@@ -7,9 +7,9 @@ package com.assem.chat_app_mvvm.data.models
  */
 
 data class User(
-    private var uid: String,
-    private var email: String,
-    private var password: String,
-    private var username: String,
-    private var image: String
+    var uid: String,
+    var email: String,
+    var password: String,
+    var username: String,
+    var image: String
 )
