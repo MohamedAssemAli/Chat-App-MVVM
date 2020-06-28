@@ -13,9 +13,10 @@ import kotlinx.coroutines.tasks.await
  * mo7mad.assim@gmail.com
  */
 
-class FirebaseAuthModule(
-    private val firebaseAuth: FirebaseAuth, private val firestore: FirebaseFirestore
-) : AuthModule {
+class FirebaseAuthModule() : AuthModule {
+
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     override fun login(email: String, password: String): Boolean {
         return firebaseAuth.signInWithEmailAndPassword(email, password).isSuccessful

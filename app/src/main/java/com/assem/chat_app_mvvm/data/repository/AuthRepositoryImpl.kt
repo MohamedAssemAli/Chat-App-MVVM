@@ -1,7 +1,9 @@
 package com.assem.chat_app_mvvm.data.repository
 
 import com.assem.chat_app_mvvm.data.dynamic.AuthModule
+import com.assem.chat_app_mvvm.data.firebase.FirebaseAuthModule
 import com.assem.chat_app_mvvm.data.models.User
+import com.assem.chat_app_mvvm.data.sockets.SocketsAuthModule
 import com.google.firebase.auth.FirebaseUser
 
 
@@ -10,7 +12,13 @@ import com.google.firebase.auth.FirebaseUser
  * mo7mad.assim@gmail.com
  */
 
-class AuthRepositoryImpl(private val authModule: AuthModule) : AuthRepository {
+class AuthRepositoryImpl(dataSourceFLag: Int) : AuthRepository {
+
+    private lateinit var authModule: AuthModule
+
+    init {
+        getDataSourceImp(dataSourceFLag)
+    }
 
     override fun login(email: String, password: String): Boolean {
         return authModule.login(email, password)
@@ -34,5 +42,15 @@ class AuthRepositoryImpl(private val authModule: AuthModule) : AuthRepository {
 
     override suspend fun signUpUser(user: User): Boolean {
         return authModule.signUpUser(user)
+    }
+
+    private fun getDataSourceImp(dataSourceFLag: Int) {
+        when (dataSourceFLag) {
+            1 -> authModule = FirebaseAuthModule()
+            2 -> authModule = SocketsAuthModule()
+            else -> { // Note the block
+                print("No data source provided")
+            }
+        }
     }
 }

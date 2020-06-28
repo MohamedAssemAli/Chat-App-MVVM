@@ -25,21 +25,17 @@ class AuthViewModel(
 
     val isLoggedIn: MutableLiveData<Resource<Boolean>> = MutableLiveData()
 
-    fun isUserLoggedIn(): Boolean {
-        viewModelScope.launch {
-            isLoggedIn.postValue(Resource.Loading())
-            if (authRepository.isLoggedIn())
-                isLoggedIn.postValue(Resource.Success(authRepository.isLoggedIn()))
-            else
-                isLoggedIn.postValue(Resource.Error("Error in signin"))
-        }
-        return false
+    init {
+        isUserLoggedIn()
     }
 
-    fun getGoogleSignedAccount(data: Intent): GoogleSignInAccount {
-        return GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException::class.java)!!
+    private fun isUserLoggedIn() = viewModelScope.launch {
+        isLoggedIn.postValue(Resource.Loading())
+        if (authRepository.isLoggedIn())
+            isLoggedIn.postValue(Resource.Success(authRepository.isLoggedIn()))
+        else
+            isLoggedIn.postValue(Resource.Error("Error in signin"))
     }
-
 
     suspend fun isUserExistInDatabase(id: String): Boolean {
         return authRepository.isUserExistedInDatabase(id)

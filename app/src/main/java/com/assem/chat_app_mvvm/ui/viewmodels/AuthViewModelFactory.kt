@@ -2,7 +2,7 @@ package com.assem.chat_app_mvvm.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.assem.chat_app_mvvm.data.repository.AuthRepository
+import com.assem.chat_app_mvvm.data.repository.AuthRepositoryImpl
 
 
 /**
@@ -10,7 +10,7 @@ import com.assem.chat_app_mvvm.data.repository.AuthRepository
  * mo7mad.assim@gmail.com
  */
 
-class AuthViewModelFactory(private val authRepository: AuthRepository) : ViewModelProvider.Factory {
+class AuthViewModelFactory(private val authRepository: AuthRepositoryImpl) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return AuthViewModel(authRepository) as T
     }
