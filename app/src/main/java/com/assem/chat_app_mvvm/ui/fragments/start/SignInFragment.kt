@@ -52,7 +52,6 @@ class SignInFragment : Fragment() {
                     )
 
                 ) {
-                    requireActivity().activity_start_progress_bar.visibility = View.GONE
                     startActivity(Intent(requireActivity(), HomeActivity::class.java))
                     requireActivity().finish()
 
