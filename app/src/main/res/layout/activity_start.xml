@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.start.StartActivity">
+    tools:context=".ui.activities.StartActivity">
 
-
-    <androidx.viewpager.widget.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_start_viewpager"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/activity_start_tab_layout"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/activity_start_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/active_tab_text_color"
-            app:tabTextColor="@color/inactive_tab_text_color" />
+            android:layout_height="match_parent">
 
-    </androidx.viewpager.widget.ViewPager>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/activity_start_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/active_tab_text_color"
+                app:tabTextColor="@color/inactive_tab_text_color" />
+
+        </androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/activity_start_progress_bar"
+        layout="@layout/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

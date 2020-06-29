@@ -20,19 +20,23 @@ class AuthRepositoryImpl(dataSourceFLag: Int) : AuthRepository {
         getDataSourceImp(dataSourceFLag)
     }
 
-    override fun login(email: String, password: String): Boolean {
+    override suspend fun login(email: String, password: String): Boolean {
         return authModule.login(email, password)
     }
 
-    override fun getCurrentUser(): FirebaseUser? {
+    override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+        return authModule.signUpWithEmailAndPassword(email, password)
+    }
+
+    override suspend fun getCurrentUser(): FirebaseUser? {
         return authModule.getCurrentUser()
     }
 
-    override fun getCurrentUserId(): String? {
+    override suspend fun getCurrentUserId(): String? {
         return authModule.getCurrentUserId()
     }
 
-    override fun isLoggedIn(): Boolean {
+    override suspend fun isLoggedIn(): Boolean {
         return authModule.isLoggedIn()
     }
 

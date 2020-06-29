@@ -8,8 +8,10 @@ package com.assem.chat_app_mvvm.data.models
 
 data class User(
     var uid: String,
+    var username: String,
     var email: String,
     var password: String,
-    var username: String,
     var image: String
-)
+) {
+    constructor() : this("", "", "", "", "")
+}

@@ -29,19 +29,27 @@ class AuthViewModel(
         isUserLoggedIn()
     }
 
+    suspend fun login(email: String, password: String): Boolean {
+        return authRepository.login(email, password)
+    }
+
     private fun isUserLoggedIn() = viewModelScope.launch {
-        isLoggedIn.postValue(Resource.Loading())
+//        isLoggedIn.postValue(Resource.Loading())
         if (authRepository.isLoggedIn())
             isLoggedIn.postValue(Resource.Success(authRepository.isLoggedIn()))
         else
-            isLoggedIn.postValue(Resource.Error("Error in signin"))
+            isLoggedIn.postValue(Resource.Error("Error in isUserLoggedIn"))
+    }
+
+    suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+        return authRepository.signUpWithEmailAndPassword(email, password)
     }
 
     suspend fun isUserExistInDatabase(id: String): Boolean {
         return authRepository.isUserExistedInDatabase(id)
     }
 
-    fun getCurrentUser(): FirebaseUser? {
+    suspend fun getCurrentUser(): FirebaseUser? {
         return authRepository.getCurrentUser()
     }
 

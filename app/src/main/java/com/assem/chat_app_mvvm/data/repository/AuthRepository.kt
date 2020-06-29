@@ -11,13 +11,15 @@ import com.google.firebase.auth.FirebaseUser
 
 interface AuthRepository {
 
-    fun login(email: String, password: String): Boolean
+    suspend fun login(email: String, password: String): Boolean
 
-    fun getCurrentUser(): FirebaseUser?
+    suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean
 
-    fun getCurrentUserId(): String?
+    suspend fun getCurrentUser(): FirebaseUser?
 
-    fun isLoggedIn(): Boolean
+    suspend fun getCurrentUserId(): String?
+
+    suspend fun isLoggedIn(): Boolean
 
     suspend fun isUserExistedInDatabase(id: String): Boolean
 

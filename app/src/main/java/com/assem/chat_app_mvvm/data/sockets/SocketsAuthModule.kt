@@ -14,20 +14,23 @@ import kotlinx.coroutines.tasks.await
  */
 
 class SocketsAuthModule() : AuthModule {
-
-    override fun login(email: String, password: String): Boolean {
+    override suspend fun login(email: String, password: String): Boolean {
         TODO("Not yet implemented")
     }
 
-    override fun getCurrentUser(): FirebaseUser? {
+    override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
         TODO("Not yet implemented")
     }
 
-    override fun getCurrentUserId(): String? {
+    override suspend fun getCurrentUser(): FirebaseUser? {
         TODO("Not yet implemented")
     }
 
-    override fun isLoggedIn(): Boolean {
+    override suspend fun getCurrentUserId(): String? {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun isLoggedIn(): Boolean {
         TODO("Not yet implemented")
     }
 

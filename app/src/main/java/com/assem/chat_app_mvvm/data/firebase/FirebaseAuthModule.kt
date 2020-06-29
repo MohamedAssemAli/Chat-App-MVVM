@@ -18,24 +18,38 @@ class FirebaseAuthModule() : AuthModule {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
 
-    override fun login(email: String, password: String): Boolean {
-        return firebaseAuth.signInWithEmailAndPassword(email, password).isSuccessful
+    override suspend fun login(email: String, password: String): Boolean {
+        return try {
+            val authResult = firebaseAuth.signInWithEmailAndPassword(email, password).await()
+            authResult.user != null
+        } catch (e: Exception) {
+            false
+        }
     }
 
-    override fun getCurrentUser(): FirebaseUser? {
+    override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+        return try {
+            val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            authResult.user != null
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun getCurrentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
 
-    override fun getCurrentUserId(): String? {
+    override suspend fun getCurrentUserId(): String? {
         return firebaseAuth.currentUser!!.uid
     }
 
-    override fun isLoggedIn(): Boolean {
+    override suspend fun isLoggedIn(): Boolean {
         return firebaseAuth.currentUser != null
     }
 
-    override suspend fun isUserExistedInDatabase(uid: String): Boolean {
-        return firestore.collection(USERS).document(uid)
+    override suspend fun isUserExistedInDatabase(id: String): Boolean {
+        return firestore.collection(USERS).document(id)
             .get().await().exists()
     }
 
