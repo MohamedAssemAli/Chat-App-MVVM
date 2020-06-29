@@ -1,4 +1,4 @@
-package com.assem.chat_app_mvvm.ui.viewmodels
+package com.assem.chat_app_mvvm.ui.activities.start
 
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData

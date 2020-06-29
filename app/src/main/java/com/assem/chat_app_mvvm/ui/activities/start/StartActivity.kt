@@ -1,4 +1,4 @@
-package com.assem.chat_app_mvvm.ui.activities
+package com.assem.chat_app_mvvm.ui.activities.start
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,6 @@ import com.assem.chat_app_mvvm.R
 import com.assem.chat_app_mvvm.data.repository.AuthRepositoryImpl
 import com.assem.chat_app_mvvm.ui.fragments.start.SignInFragment
 import com.assem.chat_app_mvvm.ui.fragments.start.SignUpFragment
-import com.assem.chat_app_mvvm.ui.viewmodels.AuthViewModel
-import com.assem.chat_app_mvvm.ui.viewmodels.AuthViewModelFactory
 import com.assem.chat_app_mvvm.util.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_start.*
@@ -23,7 +21,9 @@ class StartActivity : AppCompatActivity() {
         setupViewPager()
         viewModel = ViewModelProvider(
             this,
-            AuthViewModelFactory(AuthRepositoryImpl(1))
+            AuthViewModelFactory(
+                AuthRepositoryImpl(1)
+            )
         ).get(AuthViewModel::class.java)
     }
 

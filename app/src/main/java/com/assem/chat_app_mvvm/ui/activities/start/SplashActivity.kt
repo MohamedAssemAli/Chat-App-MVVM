@@ -1,17 +1,14 @@
-package com.assem.chat_app_mvvm.ui.activities
+package com.assem.chat_app_mvvm.ui.activities.start
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.androiddevs.mvvmnewsapp.util.Resource
 import com.assem.chat_app_mvvm.R
 import com.assem.chat_app_mvvm.data.repository.AuthRepositoryImpl
-import com.assem.chat_app_mvvm.ui.viewmodels.AuthViewModel
-import com.assem.chat_app_mvvm.ui.viewmodels.AuthViewModelFactory
-import kotlinx.android.synthetic.main.activity_splash.*
+import com.assem.chat_app_mvvm.ui.activities.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -25,7 +22,9 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(
             this,
-            AuthViewModelFactory(AuthRepositoryImpl(1))
+            AuthViewModelFactory(
+                AuthRepositoryImpl(1)
+            )
         ).get(AuthViewModel::class.java)
 
         viewModel.isLoggedIn.observe(this, Observer { isLoggedIn ->

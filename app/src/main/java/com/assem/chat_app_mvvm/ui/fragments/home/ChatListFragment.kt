@@ -1,4 +1,4 @@
-package com.assem.chat_app_mvvm.ui.fragments
+package com.assem.chat_app_mvvm.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,24 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.assem.chat_app_mvvm.R
 
-class UsersListFragment : Fragment() {
+class ChatListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = UsersListFragment()
-    }
 
-    private lateinit var viewModel: UsersListViewModel
+    private lateinit var viewModel: ChatListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_users_list, container, false)
+        return inflater.inflate(R.layout.chat_list_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(UsersListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ChatListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.assem.chat_app_mvvm.R
 import com.assem.chat_app_mvvm.data.models.User
-import com.assem.chat_app_mvvm.ui.activities.HomeActivity
-import com.assem.chat_app_mvvm.ui.activities.StartActivity
-import com.assem.chat_app_mvvm.ui.viewmodels.AuthViewModel
+import com.assem.chat_app_mvvm.ui.activities.home.HomeActivity
+import com.assem.chat_app_mvvm.ui.activities.start.StartActivity
+import com.assem.chat_app_mvvm.ui.activities.start.AuthViewModel
 import com.assem.chat_app_mvvm.util.validateEmail
 import com.assem.chat_app_mvvm.util.validatePassword
 import com.assem.chat_app_mvvm.util.validateUsername
