@@ -2,6 +2,7 @@ package com.mostafa.gomlaexpress.app.util
 
 import android.content.Context
 import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import com.assem.chat_app_mvvm.R
 import com.bumptech.glide.Glide
@@ -11,12 +12,13 @@ import com.bumptech.glide.request.RequestOptions
 
 
 fun circularImage(
-    context: Context,
+    view: View,
     imageView: ImageView,
     image: Any,
     placeHolder: Int
 ) {
-    Glide.with(context)
+    Glide
+        .with(view)
         .load(image)
         .transition(DrawableTransitionOptions().crossFade())
         .apply(RequestOptions().placeholder(placeHolder))

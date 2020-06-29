@@ -2,7 +2,7 @@ package com.assem.chat_app_mvvm.util
 
 
 // Users
-val USERS = "users"
+val USERS = "chat_mvvm_users"
 val USERS_TOKEN = "token"
 val USERS_USERNAME = "username"
 val USERS_EMAIL = "email"

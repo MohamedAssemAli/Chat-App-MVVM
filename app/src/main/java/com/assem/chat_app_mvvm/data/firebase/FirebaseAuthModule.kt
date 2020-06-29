@@ -19,6 +19,7 @@ class FirebaseAuthModule() : AuthModule {
     private val firestore = FirebaseFirestore.getInstance()
 
     override suspend fun login(email: String, password: String): Boolean {
+//        TODO("Needs to be updated with Resource data type")
         return try {
             val authResult = firebaseAuth.signInWithEmailAndPassword(email, password).await()
             authResult.user != null
@@ -28,6 +29,7 @@ class FirebaseAuthModule() : AuthModule {
     }
 
     override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+//        TODO("Needs to be updated with Resource data type")
         return try {
             val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             authResult.user != null
