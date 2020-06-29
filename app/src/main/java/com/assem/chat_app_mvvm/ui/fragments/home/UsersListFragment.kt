@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.assem.chat_app_mvvm.R
 
 class UsersListFragment : Fragment() {
-    
+
     private lateinit var viewModel: UsersListViewModel
 
     override fun onCreateView(
