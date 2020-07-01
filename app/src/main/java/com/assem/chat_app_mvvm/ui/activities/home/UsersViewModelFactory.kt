@@ -1,13 +1,13 @@
-package com.assem.chat_app_mvvm.ui.fragments.home
+package com.assem.chat_app_mvvm.ui.activities.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.assem.chat_app_mvvm.data.repository.UsersRepository
+import com.assem.chat_app_mvvm.data.repository.UsersRepositoryImp
 
-class UsersListViewModelFactory(private val usersRepository: UsersRepository) :
+class UsersViewModelFactory(private val usersRepository: UsersRepositoryImp) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return UsersListViewModel(
+        return UsersViewModel(
             usersRepository
         ) as T
     }
