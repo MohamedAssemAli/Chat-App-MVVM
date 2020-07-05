@@ -1,6 +1,6 @@
 package com.assem.chat_app_mvvm.data.repository
 
-import com.androiddevs.mvvmnewsapp.util.Resource
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.models.User
 
 
@@ -11,8 +11,8 @@ import com.assem.chat_app_mvvm.data.models.User
 
 interface UsersRepository {
 
-    suspend fun getUsers(): Resource<ArrayList<User>>
+    suspend fun getUsers(): Result<List<User>>
 
-    suspend fun getUserChats(): Resource<ArrayList<User>>
+    suspend fun getUserChats(): Result<List<User>>
 
 }

@@ -1,5 +1,6 @@
 package com.assem.chat_app_mvvm.data.repository
 
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.dynamic.AuthModule
 import com.assem.chat_app_mvvm.data.firebase.FirebaseAuthModule
 import com.assem.chat_app_mvvm.data.models.User
@@ -20,31 +21,34 @@ class AuthRepositoryImpl(dataSourceFLag: Int) : AuthRepository {
         getDataSourceImp(dataSourceFLag)
     }
 
-    override suspend fun login(email: String, password: String): Boolean {
+    override suspend fun login(email: String, password: String): Result<Boolean> {
         return authModule.login(email, password)
     }
 
-    override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+    override suspend fun signUpWithEmailAndPassword(
+        email: String,
+        password: String
+    ): Result<Boolean> {
         return authModule.signUpWithEmailAndPassword(email, password)
     }
 
-    override suspend fun getCurrentUser(): FirebaseUser? {
+    override suspend fun getCurrentUser(): Result<FirebaseUser?> {
         return authModule.getCurrentUser()
     }
 
-    override suspend fun getCurrentUserId(): String? {
+    override suspend fun getCurrentUserId(): Result<String?> {
         return authModule.getCurrentUserId()
     }
 
-    override suspend fun isLoggedIn(): Boolean {
+    override suspend fun isLoggedIn(): Result<Boolean> {
         return authModule.isLoggedIn()
     }
 
-    override suspend fun isUserExistedInDatabase(id: String): Boolean {
+    override suspend fun isUserExistedInDatabase(id: String): Result<Boolean> {
         return authModule.isUserExistedInDatabase(id)
     }
 
-    override suspend fun signUpUser(user: User): Boolean {
+    override suspend fun signUpUser(user: User): Result<Boolean> {
         return authModule.signUpUser(user)
     }
 

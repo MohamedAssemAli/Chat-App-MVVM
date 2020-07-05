@@ -1,6 +1,6 @@
 package com.assem.chat_app_mvvm.data.repository
 
-import com.androiddevs.mvvmnewsapp.util.Resource
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.dynamic.UsersModule
 import com.assem.chat_app_mvvm.data.firebase.FirebaseUsersModule
 import com.assem.chat_app_mvvm.data.models.User
@@ -20,11 +20,11 @@ class UsersRepositoryImp(dataSourceFLag: Int) : UsersRepository {
         getDataSourceImp(dataSourceFLag)
     }
 
-    override suspend fun getUsers(): Resource<ArrayList<User>> {
+    override suspend fun getUsers(): Result<List<User>> {
         return usersModule.getUsers()
     }
 
-    override suspend fun getUserChats(): Resource<ArrayList<User>> {
+    override suspend fun getUserChats(): Result<List<User>> {
         TODO("Not yet implemented")
     }
 

@@ -43,53 +43,53 @@ class SignUpFragment : Fragment() {
     }
 
     private fun signUp() {
-        requireActivity().activity_start_progress_bar.visibility = View.VISIBLE
-        if (validateInput()) {
-            user = User(
-                "Default",
-                fragment_sign_up_username_text_input_edit_text.text.toString(),
-                fragment_sign_up_email_text_input_edit_text.text.toString(),
-                fragment_sign_up_password_text_input_edit_text.text.toString(),
-                "Default"
-            )
-            user?.let {
-                lifecycleScope.launch {
-                    try {
-                        if (viewModel.signUpWithEmailAndPassword(user.email, user.password)) {
-                            user.uid = viewModel.getCurrentUser()!!.uid
-                            if (viewModel.signUpUser(user)) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "successful registration",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
-                                startActivity(Intent(requireActivity(), HomeActivity::class.java))
-                                requireActivity().finish()
-                            } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error in registration",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                requireActivity().activity_start_progress_bar.visibility = View.GONE
-                            }
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Email is already taken",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            requireActivity().activity_start_progress_bar.visibility = View.GONE
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            }
-        } else {
-            requireActivity().activity_start_progress_bar.visibility = View.GONE
-        }
+//        requireActivity().activity_start_progress_bar.visibility = View.VISIBLE
+//        if (validateInput()) {
+//            user = User(
+//                "Default",
+//                fragment_sign_up_username_text_input_edit_text.text.toString(),
+//                fragment_sign_up_email_text_input_edit_text.text.toString(),
+//                fragment_sign_up_password_text_input_edit_text.text.toString(),
+//                "Default"
+//            )
+//            user?.let {
+//                lifecycleScope.launch {
+//                    try {
+//                        if (viewModel.signUpWithEmailAndPassword(user.email, user.password)) {
+//                            user.uid = viewModel.getCurrentUser()!!.uid
+//                            if (viewModel.signUpUser(user)) {
+//                                Toast.makeText(
+//                                    requireContext(),
+//                                    "successful registration",
+//                                    Toast.LENGTH_LONG
+//                                )
+//                                    .show()
+//                                startActivity(Intent(requireActivity(), HomeActivity::class.java))
+//                                requireActivity().finish()
+//                            } else {
+//                                Toast.makeText(
+//                                    requireContext(),
+//                                    "Error in registration",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
+//                                requireActivity().activity_start_progress_bar.visibility = View.GONE
+//                            }
+//                        } else {
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "Email is already taken",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                            requireActivity().activity_start_progress_bar.visibility = View.GONE
+//                        }
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            }
+//        } else {
+//            requireActivity().activity_start_progress_bar.visibility = View.GONE
+//        }
     }
 
     private fun validateInput(): Boolean {

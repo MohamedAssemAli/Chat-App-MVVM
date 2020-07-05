@@ -1,11 +1,13 @@
 package com.assem.chat_app_mvvm.data.firebase
 
-import com.androiddevs.mvvmnewsapp.util.Resource
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.dynamic.UsersModule
 import com.assem.chat_app_mvvm.data.models.User
 import com.assem.chat_app_mvvm.util.USERS
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
+import com.google.firebase.firestore.ktx.toObjects
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Created by Mohamed Assem on 25-Jun-20.
@@ -16,21 +18,23 @@ class FirebaseUsersModule() : UsersModule {
 
     private val firestore = FirebaseFirestore.getInstance()
 
-    override suspend fun getUsers(): Resource<ArrayList<User>> {
-        val users = ArrayList<User>()
-        return try {
-            val productsSnapshot = firestore.collection(USERS)
-                .get().await().documents
-            for (productSnapshot in productsSnapshot) {
-                users.add(productSnapshot.toObject(User::class.java)!!)
-            }
-            Resource.Success(users)
-        } catch (e: Exception) {
-            Resource.Error(e.toString(), null)
+    override suspend fun getUsers(): Result<List<User>> =
+        suspendCoroutine { cont ->
+            firestore.collection(USERS)
+                .get()
+                .addOnSuccessListener {
+                    try {
+                        cont.resume(Result.Success(it.toObjects()))
+                    } catch (e: Exception) {
+                        cont.resume(Result.Error(e))
+                    }
+                }.addOnFailureListener {
+                    cont.resume(Result.Error(it))
+                }
         }
-    }
 
-    override suspend fun getUserChats(): Resource<ArrayList<User>> {
+
+    override suspend fun getUserChats(): Result<List<User>> {
         TODO("Not yet implemented")
     }
 

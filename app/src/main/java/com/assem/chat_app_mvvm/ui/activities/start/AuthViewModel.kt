@@ -1,10 +1,11 @@
 package com.assem.chat_app_mvvm.ui.activities.start
 
 import android.content.Intent
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androiddevs.mvvmnewsapp.util.Resource
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.models.User
 import com.assem.chat_app_mvvm.data.repository.AuthRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,37 +24,35 @@ class AuthViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    val isLoggedIn: MutableLiveData<Resource<Boolean>> = MutableLiveData()
+    val isLoggedIn: MutableLiveData<Result<Boolean>> = MutableLiveData()
+    val isSuccessfulLogin: MutableLiveData<Result<Boolean>> = MutableLiveData()
 
     init {
         isUserLoggedIn()
     }
 
-    suspend fun login(email: String, password: String): Boolean {
-        return authRepository.login(email, password)
+    fun login(email: String, password: String) = viewModelScope.launch {
+        isSuccessfulLogin.postValue(authRepository.login(email, password))
     }
+
 
     private fun isUserLoggedIn() = viewModelScope.launch {
-//        isLoggedIn.postValue(Resource.Loading())
-        if (authRepository.isLoggedIn())
-            isLoggedIn.postValue(Resource.Success(authRepository.isLoggedIn()))
-        else
-            isLoggedIn.postValue(Resource.Error("Error in isUserLoggedIn"))
+        isLoggedIn.postValue(authRepository.isLoggedIn())
     }
 
-    suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+    suspend fun signUpWithEmailAndPassword(email: String, password: String): Result<Boolean> {
         return authRepository.signUpWithEmailAndPassword(email, password)
     }
 
-    suspend fun isUserExistInDatabase(id: String): Boolean {
+    suspend fun isUserExistInDatabase(id: String): Result<Boolean> {
         return authRepository.isUserExistedInDatabase(id)
     }
 
-    suspend fun getCurrentUser(): FirebaseUser? {
+    suspend fun getCurrentUser(): Result<FirebaseUser?> {
         return authRepository.getCurrentUser()
     }
 
-    suspend fun signUpUser(user: User): Boolean {
+    suspend fun signUpUser(user: User): Result<Boolean> {
         return authRepository.signUpUser(user)
     }
 

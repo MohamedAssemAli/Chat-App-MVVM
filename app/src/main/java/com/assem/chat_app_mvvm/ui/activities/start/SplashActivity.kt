@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.androiddevs.mvvmnewsapp.util.Resource
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.R
 import com.assem.chat_app_mvvm.data.repository.AuthRepositoryImpl
 import com.assem.chat_app_mvvm.ui.activities.home.HomeActivity
@@ -29,11 +29,11 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel.isLoggedIn.observe(this, Observer { isLoggedIn ->
             when (isLoggedIn) {
-                is Resource.Success -> {
+                is Result.Success -> {
                     startActivity(Intent(this, HomeActivity::class.java))
                     finish()
                 }
-                is Resource.Error -> {
+                is Result.Error -> {
                     startActivity(Intent(this, StartActivity::class.java))
                     finish()
                 }

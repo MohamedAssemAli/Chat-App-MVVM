@@ -1,5 +1,6 @@
 package com.assem.chat_app_mvvm.data.sockets
 
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.dynamic.AuthModule
 import com.assem.chat_app_mvvm.data.models.User
 import com.assem.chat_app_mvvm.util.USERS
@@ -14,31 +15,34 @@ import kotlinx.coroutines.tasks.await
  */
 
 class SocketsAuthModule() : AuthModule {
-    override suspend fun login(email: String, password: String): Boolean {
+    override suspend fun login(email: String, password: String): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean {
+    override suspend fun signUpWithEmailAndPassword(
+        email: String,
+        password: String
+    ): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getCurrentUser(): FirebaseUser? {
+    override suspend fun getCurrentUser(): Result<FirebaseUser?> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getCurrentUserId(): String? {
+    override suspend fun getCurrentUserId(): Result<String?> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun isLoggedIn(): Boolean {
+    override suspend fun isLoggedIn(): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun isUserExistedInDatabase(id: String): Boolean {
+    override suspend fun isUserExistedInDatabase(id: String): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun signUpUser(user: User): Boolean {
+    override suspend fun signUpUser(user: User): Result<Boolean> {
         TODO("Not yet implemented")
     }
 

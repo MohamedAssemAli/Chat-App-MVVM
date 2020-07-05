@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.R
 import com.assem.chat_app_mvvm.ui.activities.home.HomeActivity
 import com.assem.chat_app_mvvm.ui.activities.start.StartActivity
@@ -42,25 +44,26 @@ class SignInFragment : Fragment() {
     private fun signIn() {
         requireActivity().activity_start_progress_bar.visibility = View.VISIBLE
         if (validateInput()) {
-            lifecycleScope.launch {
-                if (viewModel.login(
-                        fragment_sign_in_email_text_input_edit_text.text.toString(),
-                        fragment_sign_in_password_text_input_edit_text.text.toString()
-                    )
-
-                ) {
-                    startActivity(Intent(requireActivity(), HomeActivity::class.java))
-                    requireActivity().finish()
-
-                } else {
-                    requireActivity().activity_start_progress_bar.visibility = View.GONE
-                    Toast.makeText(
-                        requireContext(),
-                        "Error in signin",
-                        Toast.LENGTH_LONG
-                    ).show()
+            viewModel.login(
+                fragment_sign_in_email_text_input_edit_text.text.toString(),
+                fragment_sign_in_password_text_input_edit_text.text.toString()
+            )
+            viewModel.isSuccessfulLogin.observe(viewLifecycleOwner, Observer { isSuccessfulLogin ->
+                when (isSuccessfulLogin) {
+                    is Result.Success -> {
+                        startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                        requireActivity().finish()
+                    }
+                    is Result.Error -> {
+                        requireActivity().activity_start_progress_bar.visibility = View.GONE
+                        Toast.makeText(
+                            requireContext(),
+                            isSuccessfulLogin.exception.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
-            }
+            })
         } else {
             requireActivity().activity_start_progress_bar.visibility = View.GONE
         }

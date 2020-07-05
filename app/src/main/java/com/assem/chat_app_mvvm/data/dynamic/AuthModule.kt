@@ -1,5 +1,6 @@
 package com.assem.chat_app_mvvm.data.dynamic
 
+import com.androiddevs.mvvmnewsapp.util.Result
 import com.assem.chat_app_mvvm.data.models.User
 import com.google.firebase.auth.FirebaseUser
 
@@ -11,17 +12,17 @@ import com.google.firebase.auth.FirebaseUser
 
 interface AuthModule {
 
-    suspend fun login(email: String, password: String): Boolean
+    suspend fun login(email: String, password: String): Result<Boolean>
 
-    suspend fun signUpWithEmailAndPassword(email: String, password: String): Boolean
+    suspend fun signUpWithEmailAndPassword(email: String, password: String):  Result<Boolean>
 
-    suspend fun getCurrentUser(): FirebaseUser?
+    suspend fun getCurrentUser():  Result<FirebaseUser?>
 
-    suspend fun getCurrentUserId(): String?
+    suspend fun getCurrentUserId(): Result<String?>
 
-    suspend fun isLoggedIn(): Boolean
+    suspend fun isLoggedIn(): Result<Boolean>
 
-    suspend fun isUserExistedInDatabase(id: String): Boolean
+    suspend fun isUserExistedInDatabase(id: String): Result<Boolean>
 
-    suspend fun signUpUser(user: User): Boolean
+    suspend fun signUpUser(user: User):  Result<Boolean>
 }
