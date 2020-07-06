@@ -34,7 +34,7 @@ class SocketsAuthModule() : AuthModule {
         TODO("Not yet implemented")
     }
 
-    override suspend fun isLoggedIn(): Result<Boolean> {
+    override suspend fun isLoggedIn(): Boolean {
         TODO("Not yet implemented")
     }
 
