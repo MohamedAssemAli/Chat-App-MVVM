@@ -24,7 +24,7 @@ class AuthViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    val isLoggedIn: MutableLiveData<Result<Boolean>> = MutableLiveData()
+    val isLoggedIn: MutableLiveData<Boolean> = MutableLiveData()
     val isSuccessfulLogin: MutableLiveData<Result<Boolean>> = MutableLiveData()
 
     init {

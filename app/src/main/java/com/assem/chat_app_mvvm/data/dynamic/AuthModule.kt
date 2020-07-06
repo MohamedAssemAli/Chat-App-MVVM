@@ -20,7 +20,7 @@ interface AuthModule {
 
     suspend fun getCurrentUserId(): Result<String?>
 
-    suspend fun isLoggedIn(): Result<Boolean>
+    suspend fun isLoggedIn(): Boolean
 
     suspend fun isUserExistedInDatabase(id: String): Result<Boolean>
 

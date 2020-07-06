@@ -54,11 +54,8 @@ class FirebaseAuthModule() : AuthModule {
         return Result.Success(firebaseAuth.currentUser!!.uid)
     }
 
-    override suspend fun isLoggedIn(): Result<Boolean> {
-        return if (firebaseAuth.currentUser != null)
-            Result.Success(true)
-        else
-            Result.Success(false)
+    override suspend fun isLoggedIn(): Boolean {
+        return firebaseAuth.currentUser != null
     }
 
     override suspend fun isUserExistedInDatabase(id: String): Result<Boolean> {

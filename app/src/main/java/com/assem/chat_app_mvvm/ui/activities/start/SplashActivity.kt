@@ -28,15 +28,13 @@ class SplashActivity : AppCompatActivity() {
         ).get(AuthViewModel::class.java)
 
         viewModel.isLoggedIn.observe(this, Observer { isLoggedIn ->
-            when (isLoggedIn) {
-                is Result.Success -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    finish()
-                }
-                is Result.Error -> {
-                    startActivity(Intent(this, StartActivity::class.java))
-                    finish()
-                }
+            if (isLoggedIn) {
+
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            } else {
+                startActivity(Intent(this, StartActivity::class.java))
+                finish()
             }
         })
 

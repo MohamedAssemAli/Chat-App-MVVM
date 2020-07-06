@@ -40,7 +40,7 @@ class AuthRepositoryImpl(dataSourceFLag: Int) : AuthRepository {
         return authModule.getCurrentUserId()
     }
 
-    override suspend fun isLoggedIn(): Result<Boolean> {
+    override suspend fun isLoggedIn(): Boolean {
         return authModule.isLoggedIn()
     }
 
